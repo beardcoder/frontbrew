@@ -11,6 +11,8 @@ ENV BASE_PATH='/app/frontend/' \
     PROXY_PORT='3000' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
 
+RUN apk add --no-cache curl
+
 USER node
 
 COPY src/package-lock.json src/package.json /home/node/

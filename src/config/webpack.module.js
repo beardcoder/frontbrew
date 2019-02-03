@@ -72,6 +72,20 @@ module.exports = {
                 }
             },
             {
+                test: /\.(ts|js)x?$/,
+                exclude: [/core-js/, /@babel\/runtime/],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        extends: Path.join(
+                            process.env.BASE_PATH,
+                            process.env.PROJECT_PRIVATE,
+                            '.babelrc'
+                        )
+                    }
+                }
+            },
+            {
                 test: /\.css$/,
                 use: [
                     {

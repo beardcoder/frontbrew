@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const merge = require('webpack-merge');
 
 const webpackPlugins = require('./config/webpack.plugins');

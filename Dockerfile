@@ -11,7 +11,9 @@ ENV BASE_PATH='/app/frontend/' \
     PROXY_PORT='3000' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
 
-RUN apk add --no-cache curl
+RUN apk --update add git curl openssh && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
 
 USER node
 

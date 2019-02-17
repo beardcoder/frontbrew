@@ -1,6 +1,5 @@
 const path = require('path');
 const merge = require('webpack-merge');
-
 const webpackPlugins = require('./config/webpack.plugins');
 const webpackOptimization = require('./config/webpack.optimization');
 const webpackModule = require('./config/webpack.module');
@@ -19,20 +18,20 @@ const config = {
         main: path.join(
             process.env.BASE_PATH,
             process.env.PROJECT_PRIVATE,
-            'webpack.entrypoint.js'
-        )
+            'webpack.entrypoint.js',
+        ),
     },
     output: {
         path: path.join(
             process.env.BASE_PATH,
-            process.env.PROJECT_PUBLIC
+            process.env.PROJECT_PUBLIC,
         ),
         filename: path.join(
             process.env.SCRIPTS_PATH,
-            '[name].js'
+            '[name].js',
         ),
         publicPath: process.env.PUBLIC_PATH,
-        pathinfo: false
+        pathinfo: false,
     },
     devServer: {
         publicPath: process.env.PUBLIC_PATH,
@@ -41,8 +40,8 @@ const config = {
         proxy: [
             {
                 context: '/',
-                target: 'http://' + process.env.PROXY_HOST
-            }
+                target: `http://${process.env.PROXY_HOST}`,
+            },
         ],
         disableHostCheck: true,
         hot: true,
@@ -55,12 +54,12 @@ const config = {
             chunks: false,
             children: false,
             source: false,
-            publicPath: false
-        }
-    }
+            publicPath: false,
+        },
+    },
 };
 
 module.exports = merge(
     config,
-    merge(webpackPlugins, merge(webpackModule, webpackOptimization))
+    merge(webpackPlugins, merge(webpackModule, webpackOptimization)),
 );

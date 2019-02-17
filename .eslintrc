@@ -6,7 +6,8 @@
         }
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "airbnb"
     ],
     "env": {
         "browser": true,

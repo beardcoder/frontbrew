@@ -1,5 +1,6 @@
 const BabelMinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 const IS_CI_BUILD = !!process.env.CI;
 
 module.exports = {
@@ -7,6 +8,6 @@ module.exports = {
         removeAvailableModules: IS_CI_BUILD,
         removeEmptyChunks: IS_CI_BUILD,
         splitChunks: false,
-        minimizer: [new BabelMinifyPlugin(), new OptimizeCSSAssetsPlugin()]
-    }
+        minimizer: [new BabelMinifyPlugin(), new OptimizeCSSAssetsPlugin()],
+    },
 };

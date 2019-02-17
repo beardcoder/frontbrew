@@ -1,6 +1,9 @@
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const GlobImporter = require('node-sass-glob-importer');
 const Path = require('path');
+const friendlyFormatter = require('eslint-friendly-formatter');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 /**
  * Environment from gitlab ci build
@@ -15,7 +18,7 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: ExtractCssChunks.loader
+                        loader: ExtractCssChunks.loader,
                     },
                     {
                         loader: 'css-loader',
@@ -23,23 +26,26 @@ module.exports = {
                             url: false,
                             import: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD
-                        }
+                            sourceMap: !IS_CI_BUILD,
+                        },
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             plugins: () => [
-                                require('autoprefixer')({
+                                cssnano({
+                                    preset: 'default',
+                                }),
+                                autoprefixer({
                                     browsers: [
                                         'last 5 version',
                                         '> 1%',
-                                        'ie > 9'
-                                    ]
-                                })
-                            ]
-                        }
+                                        'ie > 9',
+                                    ],
+                                }),
+                            ],
+                        },
                     },
                     {
                         loader: 'sass-loader',
@@ -50,12 +56,12 @@ module.exports = {
                                 Path.join(
                                     process.env.BASE_PATH,
                                     process.env.PROJECT_PRIVATE,
-                                    'node_modules'
-                                )
-                            ]
-                        }
-                    }
-                ]
+                                    'node_modules',
+                                ),
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 enforce: 'pre',
@@ -66,10 +72,10 @@ module.exports = {
                     configFile: Path.join(
                         process.env.BASE_PATH,
                         process.env.PROJECT_PRIVATE,
-                        '.eslintrc'
+                        '.eslintrc',
                     ),
-                    formatter: require('eslint-friendly-formatter')
-                }
+                    formatter: friendlyFormatter,
+                },
             },
             {
                 test: /\.(ts|js)x?$/,
@@ -80,36 +86,36 @@ module.exports = {
                         extends: Path.join(
                             process.env.BASE_PATH,
                             process.env.PROJECT_PRIVATE,
-                            '.babelrc'
-                        )
-                    }
-                }
+                            '.babelrc',
+                        ),
+                    },
+                },
             },
             {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: ExtractCssChunks.loader
+                        loader: ExtractCssChunks.loader,
                     },
                     {
                         loader: 'css-loader',
                         options: {
                             url: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD
-                        }
+                            sourceMap: !IS_CI_BUILD,
+                        },
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             config: {
-                                path: __dirname
-                            }
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                                path: __dirname,
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };

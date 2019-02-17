@@ -11,18 +11,16 @@ ENV BASE_PATH='/app/frontend/' \
     PROXY_PORT='3000' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
 
-RUN apk --update add git curl openssh && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm /var/cache/apk/*
+RUN apk --no-cache add git curl
 
 USER node
 
-COPY src/package-lock.json src/package.json /home/node/
+COPY src /home/node
+
 RUN cd /home/node \
     && npm ci --no-progress --production --loglevel error \
     && npx modclean -r -n default:safe
 
-COPY src /home/node
 WORKDIR /home/node
 CMD ["/bin/sh"]
 

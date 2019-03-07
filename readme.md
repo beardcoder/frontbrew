@@ -1,4 +1,4 @@
 # Node frontend build utils
 
-![build passing](https://img.shields.io/docker/automated/beardcoder/frontbrew.svg?style=for-the-badge)
-
+![Docker Automated build](https://img.shields.io/docker/automated/beardcoder/frontbrew.svg)
+![Docker Build Status](https://img.shields.io/docker/build/beardcoder/frontbrew.svg)

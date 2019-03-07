@@ -55,7 +55,7 @@
         "stylelint-declaration-use-variable": "~1.7.0",
         "stylelint-scss": "~3.5.4",
         "stylelint-webpack-plugin": "~0.10.5",
-        "typescript": "^3.4.0-dev.20190206",
+        "typescript": "^3.4.0-dev.20190307",
         "webpack": "~4.29.6",
         "webpack-cli": "~3.2.3",
         "webpack-dev-server": "~3.2.1",

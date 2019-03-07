@@ -13,7 +13,7 @@ const ENV = IS_CI_BUILD ? 'production' : 'development';
 
 const config = {
     mode: ENV,
-    devtool: IS_CI_BUILD ? false : 'inline-source-map',
+    devtool: IS_CI_BUILD ? false : 'eval',
     entry: {
         main: path.join(
             process.env.BASE_PATH,

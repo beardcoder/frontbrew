@@ -9,7 +9,8 @@ ENV BASE_PATH='/app/frontend/' \
     STYLES_PATH='Styles/' \
     STYLES_FILE='main.css' \
     PROXY_PORT='3000' \
-    PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
+    PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
+    DEV_MODE='false'
 
 RUN apk --no-cache add git curl
 

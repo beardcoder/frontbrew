@@ -10,6 +10,7 @@ const cssnano = require('cssnano');
  * @type {boolean}
  */
 const IS_CI_BUILD = !!process.env.CI;
+const DEV_MODE = !!process.env.DEV_MODE;
 
 module.exports = {
     module: {
@@ -18,14 +19,14 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: ExtractCssChunks.loader,
+                        loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
                     },
                     {
                         loader: 'css-loader',
                         options: {
                             url: false,
                             import: false,
-                            importLoaders: 1,
+                            importLoaders: 2,
                             sourceMap: !IS_CI_BUILD,
                         },
                     },
@@ -46,6 +47,9 @@ module.exports = {
                                 }),
                             ],
                         },
+                    },
+                    {
+                        loader: 'cache-loader',
                     },
                     {
                         loader: 'sass-loader',
@@ -95,7 +99,7 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: ExtractCssChunks.loader,
+                        loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
                     },
                     {
                         loader: 'css-loader',

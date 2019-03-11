@@ -1,6 +1,5 @@
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const WriteFilePlugin = require('write-file-webpack-plugin');
 const Webpack = require('webpack');
 const Path = require('path');
 
@@ -18,9 +17,6 @@ module.exports = {
         }),
         new Webpack.DefinePlugin({
             'process.env': ENV,
-        }),
-        new WriteFilePlugin({
-            test: fileName => fileName.indexOf('hot-update') === -1,
         }),
         new ExtractCssChunks({
             // Options similar to the same options in webpackOptions.output

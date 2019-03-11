@@ -36,13 +36,13 @@ const config = {
     devServer: {
         publicPath: process.env.PUBLIC_PATH,
         host: '0.0.0.0',
+        compress: true,
+        writeToDisk: filePath => filePath.indexOf('hot-update') === -1,
         port: 3000,
-        proxy: [
-            {
-                context: '/',
-                target: `http://${process.env.PROXY_HOST}`,
-            },
-        ],
+        proxy: [{
+            context: '/',
+            target: `http://${process.env.PROXY_HOST}`,
+        }],
         disableHostCheck: true,
         hot: true,
         overlay: true,

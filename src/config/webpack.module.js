@@ -20,6 +20,9 @@ module.exports = {
                 use: [
                     {
                         loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
+                        options: {
+                            hot: true,
+                        },
                     },
                     {
                         loader: 'css-loader',

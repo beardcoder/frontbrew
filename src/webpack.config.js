@@ -33,6 +33,14 @@ const config = {
         publicPath: process.env.PUBLIC_PATH,
         pathinfo: false,
     },
+    resolve: {
+        alias: {
+            '@': path.join(
+                process.env.BASE_PATH,
+                process.env.PROJECT_PRIVATE,
+            ),
+        },
+    },
     devServer: {
         publicPath: process.env.PUBLIC_PATH,
         host: '0.0.0.0',

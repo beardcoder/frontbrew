@@ -10,7 +10,7 @@ const cssnano = require('cssnano');
  * @type {boolean}
  */
 const IS_CI_BUILD = !!process.env.CI;
-const DEV_MODE = process.env.DEV_MODE !== 0;
+const DEV_MODE = !!process.env.DEV_MODE;
 
 let styleloaderOptions = {};
 

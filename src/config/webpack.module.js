@@ -10,7 +10,17 @@ const cssnano = require('cssnano');
  * @type {boolean}
  */
 const IS_CI_BUILD = !!process.env.CI;
-const DEV_MODE = !!process.env.DEV_MODE;
+const DEV_MODE = process.env.DEV_MODE !== 0;
+
+let styleloaderOptions = {};
+
+if (!DEV_MODE) {
+    styleloaderOptions = {
+        options: {
+            hot: true,
+        },
+    };
+}
 
 module.exports = {
     module: {
@@ -20,9 +30,7 @@ module.exports = {
                 use: [
                     {
                         loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
-                        options: {
-                            hot: true,
-                        },
+                        ...styleloaderOptions,
                     },
                     {
                         loader: 'css-loader',

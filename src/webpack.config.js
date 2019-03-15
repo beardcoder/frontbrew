@@ -34,6 +34,7 @@ const config = {
         pathinfo: false,
     },
     resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
         alias: {
             '@': path.join(
                 process.env.BASE_PATH,

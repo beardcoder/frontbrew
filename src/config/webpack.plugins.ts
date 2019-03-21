@@ -1,7 +1,7 @@
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
-const Webpack = require('webpack');
-const Path = require('path');
+import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
+import StyleLintPlugin from 'stylelint-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
 
 /**
  * Environment from gitlab ci build
@@ -10,12 +10,12 @@ const Path = require('path');
 const IS_CI_BUILD = !!process.env.CI;
 const ENV = IS_CI_BUILD ? 'production' : 'development';
 
-module.exports = {
+const config: webpack.Configuration = {
     plugins: [
-        new Webpack.optimize.LimitChunkCountPlugin({
+        new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1,
         }),
-        new Webpack.DefinePlugin({
+        new webpack.DefinePlugin({
             'process.env': ENV,
         }),
         new ExtractCssChunks({
@@ -25,12 +25,17 @@ module.exports = {
             chunkFilename: `${process.env.STYLES_PATH}[id].css`,
         }),
         new StyleLintPlugin({
-            configFile: Path.join(
+            configFile: path.join(
                 process.env.BASE_PATH,
                 process.env.PROJECT_PRIVATE,
                 '.stylelintrc.json',
             ),
-            failOnError: IS_CI_BUILD,
+            context: path.resolve(process.env.BASE_PATH, process.env.PROJECT_PRIVATE),
+            files: '**/*.scss',
+            quiet: false,
+            syntax: 'scss'
         }),
     ],
 };
+
+export default config;

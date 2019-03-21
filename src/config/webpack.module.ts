@@ -1,9 +1,11 @@
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
-const GlobImporter = require('node-sass-glob-importer');
-const Path = require('path');
-const friendlyFormatter = require('eslint-friendly-formatter');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
+import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
+import GlobImporter from 'node-sass-glob-importer';
+import path from 'path';
+import friendlyFormatter from 'eslint-friendly-formatter';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import webpack from "webpack";
+import reporter from 'postcss-reporter';
 
 /**
  * Environment from gitlab ci build
@@ -22,7 +24,8 @@ if (!DEV_MODE) {
     };
 }
 
-module.exports = {
+
+const config: webpack.Configuration = {
     module: {
         rules: [
             {
@@ -33,13 +36,7 @@ module.exports = {
                         ...styleloaderOptions,
                     },
                     {
-                        loader: 'css-loader',
-                        options: {
-                            url: false,
-                            import: false,
-                            importLoaders: 2,
-                            sourceMap: !IS_CI_BUILD,
-                        },
+                        loader: 'raw-loader',
                     },
                     {
                         loader: 'postcss-loader',
@@ -56,6 +53,7 @@ module.exports = {
                                         'ie > 9',
                                     ],
                                 }),
+                                reporter()
                             ],
                         },
                     },
@@ -67,8 +65,8 @@ module.exports = {
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             importer: GlobImporter(),
-                            includePaths: [
-                                Path.join(
+                            includepaths: [
+                                path.join(
                                     process.env.BASE_PATH,
                                     process.env.PROJECT_PRIVATE,
                                     'node_modules',
@@ -84,7 +82,7 @@ module.exports = {
                 exclude: [/node_modules/, /Packages/],
                 loader: 'eslint-loader',
                 options: {
-                    configFile: Path.join(
+                    configFile: path.join(
                         process.env.BASE_PATH,
                         process.env.PROJECT_PRIVATE,
                         '.eslintrc',
@@ -98,7 +96,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        extends: Path.join(
+                        extends: path.join(
                             process.env.BASE_PATH,
                             process.env.PROJECT_PRIVATE,
                             '.babelrc',
@@ -134,3 +132,5 @@ module.exports = {
         ],
     },
 };
+
+export default config;

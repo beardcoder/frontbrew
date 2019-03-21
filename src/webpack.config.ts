@@ -1,8 +1,10 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const webpackPlugins = require('./config/webpack.plugins');
-const webpackOptimization = require('./config/webpack.optimization');
-const webpackModule = require('./config/webpack.module');
+import path from 'path';
+import merge from 'webpack-merge';
+import webpack from 'webpack';
+
+import webpackPlugins from './config/webpack.plugins';
+import webpackOptimization from './config/webpack.optimization';
+import webpackModule from './config/webpack.module';
 
 /**
  * Environment from gitlab ci build

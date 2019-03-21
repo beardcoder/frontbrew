@@ -36,7 +36,7 @@ const config: webpack.Configuration = {
                         ...styleloaderOptions,
                     },
                     {
-                        loader: 'raw-loader',
+                        loader: 'css-loader',
                     },
                     {
                         loader: 'postcss-loader',

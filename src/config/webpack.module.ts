@@ -65,7 +65,7 @@ const config: webpack.Configuration = {
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             importer: GlobImporter(),
-                            includepaths: [
+                            includePaths: [
                                 path.join(
                                     process.env.BASE_PATH,
                                     process.env.PROJECT_PRIVATE,

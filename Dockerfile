@@ -18,7 +18,7 @@ USER node
 COPY src /home/node
 
 RUN cd /home/node \
-    && npm ci --no-progress --production --loglevel error \
+    && yarn install && yarn cache clean \
     && npx modclean -r -n default:safe
 
 WORKDIR /home/node

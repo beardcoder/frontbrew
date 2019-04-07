@@ -10,12 +10,12 @@ import webpack from 'webpack';
  */
 const IS_CI_BUILD = !!process.env.CI;
 const ENV = IS_CI_BUILD ? 'production' : 'development';
-const clean = process.env.CLEAN_BUILD ? new CleanWebpackPlugin() : null;
+const clean = process.env.CLEAN_BUILD ? [new CleanWebpackPlugin()] : [];
 
 const config: webpack.Configuration = {
     plugins: [
         new webpack.ProgressPlugin(),
-        clean,
+        ...clean,
         new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1,
         }),

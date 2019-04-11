@@ -37,6 +37,12 @@ const config: webpack.Configuration = {
                     },
                     {
                         loader: 'css-loader',
+                        options: {
+                            url: false,
+                            import: false,
+                            importLoaders: 1,
+                            sourceMap: !IS_CI_BUILD
+                        }
                     },
                     {
                         loader: 'postcss-loader',

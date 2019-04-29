@@ -1,29 +1,28 @@
-import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import GlobImporter from 'node-sass-glob-importer';
 import path from 'path';
 import friendlyFormatter from 'eslint-friendly-formatter';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-import webpack from "webpack";
+import webpack from 'webpack';
 import reporter from 'postcss-reporter';
 
 /**
  * Environment from gitlab ci build
  * @type {boolean}
  */
-const IS_CI_BUILD = !!process.env.CI;
-const DEV_MODE = !!process.env.DEV_MODE;
+const IS_CI_BUILD: boolean = !!process.env.CI;
+const DEV_MODE: boolean = !!process.env.DEV_MODE;
 
-let styleloaderOptions = {};
+let styleloaderOptions: Object = {};
 
 if (!DEV_MODE) {
     styleloaderOptions = {
         options: {
-            hot: true,
+            hmr: !IS_CI_BUILD,
         },
     };
 }
-
 
 const config: webpack.Configuration = {
     module: {
@@ -32,7 +31,9 @@ const config: webpack.Configuration = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
+                        loader: DEV_MODE
+                            ? 'style-loader'
+                            : MiniCssExtractPlugin.loader,
                         ...styleloaderOptions,
                     },
                     {
@@ -41,8 +42,8 @@ const config: webpack.Configuration = {
                             url: false,
                             import: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD
-                        }
+                            sourceMap: !IS_CI_BUILD,
+                        },
                     },
                     {
                         loader: 'postcss-loader',
@@ -59,7 +60,7 @@ const config: webpack.Configuration = {
                                         'ie > 9',
                                     ],
                                 }),
-                                reporter()
+                                reporter(),
                             ],
                         },
                     },
@@ -75,7 +76,7 @@ const config: webpack.Configuration = {
                                 path.join(
                                     process.env.BASE_PATH,
                                     process.env.PROJECT_PRIVATE,
-                                    'node_modules',
+                                    'node_modules'
                                 ),
                             ],
                         },
@@ -91,7 +92,7 @@ const config: webpack.Configuration = {
                     configFile: path.join(
                         process.env.BASE_PATH,
                         process.env.PROJECT_PRIVATE,
-                        '.eslintrc',
+                        '.eslintrc'
                     ),
                     formatter: friendlyFormatter,
                 },
@@ -105,7 +106,7 @@ const config: webpack.Configuration = {
                         extends: path.join(
                             process.env.BASE_PATH,
                             process.env.PROJECT_PRIVATE,
-                            '.babelrc',
+                            '.babelrc'
                         ),
                     },
                 },
@@ -114,7 +115,9 @@ const config: webpack.Configuration = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: DEV_MODE ? 'style-loader' : ExtractCssChunks.loader,
+                        loader: DEV_MODE
+                            ? 'style-loader'
+                            : MiniCssExtractPlugin.loader,
                     },
                     {
                         loader: 'css-loader',

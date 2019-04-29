@@ -13,9 +13,10 @@ ENV BASE_PATH='/app/frontend/' \
 
 RUN apk --no-cache add git curl
 
-USER node
-
 COPY src /home/node
+RUN chown -R node /home/node
+
+USER node
 
 RUN cd /home/node \
     && yarn install && yarn cache clean \

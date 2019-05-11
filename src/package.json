@@ -4,11 +4,11 @@
     "description": "Build pipeline for neos projects",
     "private": true,
     "scripts": {
-        "dep-install": "npm --prefix $BASE_PATH/$PROJECT_PRIVATE install",
-        "start": "npm run dep-install && npm run start-dev-server",
+        "dep-install": "yarn --cwd $BASE_PATH/$PROJECT_PRIVATE",
+        "start": "yarn run dep-install && yarn run start-dev-server",
         "start-dev-server": "webpack-dev-server --color --hot",
         "start-watch": "webpack --watch",
-        "build": "npm run dep-install && webpack --hide-modules --process",
+        "build": "yarn run dep-install && webpack --hide-modules --process",
         "stylelint": "stylelint \"$BASE_PATH/$PROJECT_PRIVATE/**/*.scss\"",
         "eslint": "eslint --ignore-path=$BASE_PATH/$PROJECT_PRIVATE/.eslintignore \"$BASE_PATH/$PROJECT_PRIVATE/**/*.js\""
     },

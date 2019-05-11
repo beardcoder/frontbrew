@@ -19,7 +19,7 @@ RUN chown -R node /home/node
 USER node
 
 RUN cd /home/node \
-    && yarn install && yarn cache clean \
+    && yarn && yarn cache clean \
     && npx modclean -r -n default:safe
 
 WORKDIR /home/node

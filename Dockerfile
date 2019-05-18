@@ -9,12 +9,16 @@ ENV BASE_PATH='/app/frontend/' \
     STYLES_PATH='Styles/' \
     STYLES_FILE='main.css' \
     PROXY_PORT='3000' \
-    PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
+    PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
+    YARN_CACHE_FOLDER='/home/node/.yarn/'
 
 RUN apk --no-cache add git curl
 
 COPY src /home/node
 RUN chown -R node /home/node
+
+# Install latest yarn
+RUN npm i -g yarn
 
 USER node
 

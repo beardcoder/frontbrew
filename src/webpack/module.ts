@@ -54,6 +54,8 @@ const config: webpack.Configuration = {
                                     preset: 'default',
                                 }),
                                 autoprefixer({
+                                    cascade: !IS_CI_BUILD,
+                                    grid: "autoplace",
                                     browsers: [
                                         'last 5 version',
                                         '> 1%',

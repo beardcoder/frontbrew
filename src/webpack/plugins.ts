@@ -1,21 +1,14 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 
-/**
- * Environment from gitlab ci build
- * @type {boolean}
- */
-const IS_CI_BUILD: boolean = !!process.env.CI;
+const IS_CI_BUILD = !!process.env.CI;
 const ENV: string = IS_CI_BUILD ? 'production' : 'development';
-const clean: Array<any> = process.env.CLEAN_BUILD ? [new CleanWebpackPlugin()] : [];
 
 const config: webpack.Configuration = {
     plugins: [
         new webpack.ProgressPlugin(),
-        ...clean,
         new webpack.optimize.LimitChunkCountPlugin({
             maxChunks: 1,
         }),

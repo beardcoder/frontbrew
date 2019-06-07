@@ -7,14 +7,10 @@ import cssnano from 'cssnano';
 import webpack from 'webpack';
 import reporter from 'postcss-reporter';
 
-/**
- * Environment from gitlab ci build
- * @type {boolean}
- */
-const IS_CI_BUILD: boolean = !!process.env.CI;
-const DEV_MODE: boolean = !!process.env.DEV_MODE;
+const IS_CI_BUILD = !!process.env.CI;
+const DEV_MODE = !!process.env.DEV_MODE;
 
-let styleloaderOptions: Object = {};
+let styleloaderOptions = {};
 
 if (!DEV_MODE) {
     styleloaderOptions = {
@@ -49,7 +45,7 @@ const config: webpack.Configuration = {
                         loader: 'postcss-loader',
                         options: {
                             sourceMap: !IS_CI_BUILD,
-                            plugins: () => [
+                            plugins: (): any => [
                                 cssnano({
                                     preset: 'default',
                                 }),

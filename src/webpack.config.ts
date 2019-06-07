@@ -6,11 +6,7 @@ import webpackPlugins from './webpack/plugins';
 import webpackOptimization from './webpack/optimization';
 import webpackModule from './webpack/module';
 
-/**
- * Environment from gitlab ci build
- * @type {boolean}
- */
-const IS_CI_BUILD: boolean = !!process.env.CI;
+const IS_CI_BUILD = !!process.env.CI;
 const ENV: string = IS_CI_BUILD ? 'production' : 'development';
 
 const config = {
@@ -35,10 +31,21 @@ const config = {
             '@': path.join(process.env.BASE_PATH, process.env.PROJECT_PRIVATE),
         },
     },
+    stats: {
+        modules: false,
+        hash: false,
+        version: false,
+        timings: true,
+        chunks: false,
+        children: false,
+        source: false,
+        publicPath: false,
+    },
     devServer: {
         publicPath: process.env.PUBLIC_PATH,
         host: '0.0.0.0',
         compress: true,
+        contentBase: path.join(process.env.BASE_PATH, process.env.PROJECT_PUBLIC),
         writeToDisk: filePath => filePath.indexOf('hot-update') === -1,
         port: 3000,
         proxy: [

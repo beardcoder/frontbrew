@@ -11,8 +11,6 @@ ENV BASE_PATH='/app/frontend/' \
     PROXY_PORT='3000' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
     YARN_CACHE_FOLDER='/home/node/.yarn/'
-
-ENV BROWSERSLIST_CONFIG="$BASE_PATH$PROJECT_PRIVATE"
     
 RUN apk --no-cache add git curl
 

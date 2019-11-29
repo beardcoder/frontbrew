@@ -59,7 +59,7 @@
         "source-map-loader": "^0.2.4",
         "style-loader": "~0.23.1",
         "stylelint": "^10.1.0",
-        "stylelint-declaration-use-variable": "~1.7.0",
+        "stylelint-declaration-use-variable": "~1.7.2",
         "stylelint-scss": "~3.8.0",
         "stylelint-webpack-plugin": "~0.10.5",
         "ts-node": "^8.2.0",

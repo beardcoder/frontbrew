@@ -21,7 +21,7 @@
         "@babel/plugin-syntax-dynamic-import": "~7.7.4",
         "@babel/plugin-transform-runtime": "~7.7.4",
         "@babel/preset-env": "~7.7.7",
-        "@babel/preset-typescript": "^7.7.4",
+        "@babel/preset-typescript": "^7.7.7",
         "@types/autoprefixer": "^9.6.1",
         "@types/cssnano": "^4.0.0",
         "@types/node": "^12.12.14",

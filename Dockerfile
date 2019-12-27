@@ -12,13 +12,11 @@ ENV BASE_PATH='/app/frontend/' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
     YARN_CACHE_FOLDER='/home/node/.yarn/'
 
-RUN apk --no-cache add git curl
+RUN apk --no-cache add git curl \
+    && npm i -g --force npm yarn
 
 COPY src /home/node
 RUN chown -R node /home/node
-
-# update and install dependency
-RUN npm i -g npm yarn
 
 USER node
 

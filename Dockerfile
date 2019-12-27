@@ -11,14 +11,14 @@ ENV BASE_PATH='/app/frontend/' \
     PROXY_PORT='3000' \
     PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
     YARN_CACHE_FOLDER='/home/node/.yarn/'
-    
+
 RUN apk --no-cache add git curl
 
 COPY src /home/node
 RUN chown -R node /home/node
 
-# Install latest yarn
-RUN npm i -g yarn
+# update and install dependency
+RUN npm i -g npm yarn
 
 USER node
 

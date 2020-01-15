@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": ["major", "lockFileMaintenance", "minor", "patch", "pin", "digest", "bump"],
+      "automerge": true
+    }
   ]
 }

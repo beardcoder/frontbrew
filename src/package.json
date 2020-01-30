@@ -26,7 +26,7 @@
         "@types/cssnano": "4.0.0",
         "@types/node": "13.5.2",
         "@types/webpack": "4.41.3",
-        "@types/webpack-dev-server": "3.9.0",
+        "@types/webpack-dev-server": "3.10.0",
         "@typescript-eslint/eslint-plugin": "2.18.0",
         "autoprefixer": "9.7.3",
         "babel-loader": "8.0.6",

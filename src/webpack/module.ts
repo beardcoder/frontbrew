@@ -1,11 +1,11 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import GlobImporter from 'node-sass-glob-importer';
-import path from 'path';
-import friendlyFormatter from 'eslint-friendly-formatter';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-import webpack from 'webpack';
-import reporter from 'postcss-reporter';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import GlobImporter from "node-sass-glob-importer";
+import path from "path";
+import friendlyFormatter from "eslint-friendly-formatter";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import webpack from "webpack";
+import reporter from "postcss-reporter";
 
 const IS_CI_BUILD = !!process.env.CI;
 const DEV_MODE = !!process.env.DEV_MODE;
@@ -15,8 +15,8 @@ let styleloaderOptions = {};
 if (!DEV_MODE) {
     styleloaderOptions = {
         options: {
-            hmr: !IS_CI_BUILD,
-        },
+            hmr: !IS_CI_BUILD
+        }
     };
 }
 
@@ -28,111 +28,113 @@ const config: webpack.Configuration = {
                 use: [
                     {
                         loader: DEV_MODE
-                            ? 'style-loader'
+                            ? "style-loader"
                             : MiniCssExtractPlugin.loader,
-                        ...styleloaderOptions,
+                        ...styleloaderOptions
                     },
                     {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
                             url: false,
                             import: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD,
-                        },
+                            sourceMap: !IS_CI_BUILD
+                        }
                     },
                     {
-                        loader: 'postcss-loader',
+                        loader: "postcss-loader",
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             plugins: (): any => [
                                 cssnano({
-                                    preset: 'default',
+                                    preset: "default"
                                 }),
                                 autoprefixer({
                                     cascade: !IS_CI_BUILD,
                                     grid: "autoplace"
                                 }),
-                                reporter(),
-                            ],
-                        },
+                                reporter()
+                            ]
+                        }
                     },
                     {
-                        loader: 'cache-loader',
+                        loader: "cache-loader"
                     },
                     {
-                        loader: 'sass-loader',
+                        loader: "sass-loader",
                         options: {
                             sourceMap: !IS_CI_BUILD,
-                            importer: GlobImporter(),
-                            includePaths: [
-                                path.join(
-                                    process.env.BASE_PATH,
-                                    process.env.PROJECT_PRIVATE,
-                                    'node_modules'
-                                ),
-                            ],
-                        },
-                    },
-                ],
+                            sassOptions: {
+                                importer: GlobImporter(),
+                                includePaths: [
+                                    path.join(
+                                        process.env.BASE_PATH,
+                                        process.env.PROJECT_PRIVATE,
+                                        "node_modules"
+                                    )
+                                ]
+                            }
+                        }
+                    }
+                ]
             },
             {
-                enforce: 'pre',
+                enforce: "pre",
                 test: /\.js$/,
                 exclude: [/node_modules/, /Packages/],
-                loader: 'eslint-loader',
+                loader: "eslint-loader",
                 options: {
                     configFile: path.join(
                         process.env.BASE_PATH,
                         process.env.PROJECT_PRIVATE,
-                        '.eslintrc'
+                        ".eslintrc"
                     ),
-                    formatter: friendlyFormatter,
-                },
+                    formatter: friendlyFormatter
+                }
             },
             {
                 test: /\.(ts|js)x?$/,
                 exclude: [/core-js/, /@babel\/runtime/],
                 use: {
-                    loader: 'babel-loader',
+                    loader: "babel-loader",
                     options: {
                         extends: path.join(
                             process.env.BASE_PATH,
                             process.env.PROJECT_PRIVATE,
-                            '.babelrc'
-                        ),
-                    },
-                },
+                            ".babelrc"
+                        )
+                    }
+                }
             },
             {
                 test: /\.css$/,
                 use: [
                     {
                         loader: DEV_MODE
-                            ? 'style-loader'
-                            : MiniCssExtractPlugin.loader,
+                            ? "style-loader"
+                            : MiniCssExtractPlugin.loader
                     },
                     {
-                        loader: 'css-loader',
+                        loader: "css-loader",
                         options: {
                             url: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD,
-                        },
+                            sourceMap: !IS_CI_BUILD
+                        }
                     },
                     {
-                        loader: 'postcss-loader',
+                        loader: "postcss-loader",
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             config: {
-                                path: __dirname,
-                            },
-                        },
-                    },
-                ],
-            },
-        ],
-    },
+                                path: __dirname
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 };
 
 export default config;

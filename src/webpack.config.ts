@@ -1,15 +1,20 @@
 import path from "path";
 import merge from "webpack-merge";
-import webpack from "webpack";
+import { Configuration as WebpackConfiguration } from "webpack";
+import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
+
+interface Configuration extends WebpackConfiguration {
+    devServer?: WebpackDevServerConfiguration;
+}
 
 import webpackPlugins from "./webpack/plugins";
 import webpackOptimization from "./webpack/optimization";
 import webpackModule from "./webpack/module";
 
 const IS_CI_BUILD = !!process.env.CI;
-const ENV: string = IS_CI_BUILD ? "production" : "development";
+const ENV = IS_CI_BUILD ? "production" : "development";
 
-const config = {
+const config: Configuration = {
     mode: ENV,
     devtool: IS_CI_BUILD ? false : "eval",
     entry: {

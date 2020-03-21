@@ -27,7 +27,6 @@ const config: Configuration = {
     output: {
         path: path.join(process.env.BASE_PATH, process.env.PROJECT_PUBLIC),
         filename: path.join(process.env.SCRIPTS_PATH, "[name].js"),
-        publicPath: process.env.PUBLIC_PATH,
         pathinfo: false
     },
     resolve: {

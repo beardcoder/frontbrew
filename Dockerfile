@@ -1,16 +1,16 @@
 FROM node:alpine
 
 # Default Projekt envs. This can be overritten in docker-compose.yml
-ENV BASE_PATH='/app/frontend/' \
-    PROXY_HOST='neos.docker' \
-    PROJECT_PRIVATE='Resources/Private/' \
-    PROJECT_PUBLIC='Resources/Public/' \
-    SCRIPTS_PATH='Scripts/' \
-    STYLES_PATH='Styles/' \
-    STYLES_FILE='main.css' \
-    PROXY_PORT='3000' \
-    PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/' \
-    YARN_CACHE_FOLDER='/home/node/.yarn/'
+ENV BASE_PATH='/app/frontend/'
+ENV PROXY_HOST='neos.docker'
+ENV PROJECT_PRIVATE='Resources/Private/'
+ENV PROJECT_PUBLIC='Resources/Public/'
+ENV SCRIPTS_PATH='Scripts/'
+ENV STYLES_PATH='Styles/'
+ENV STYLES_FILE='main.css'
+ENV PROXY_PORT='3000'
+ENV PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
+ENV YARN_CACHE_FOLDER='/home/node/.yarn/'
 
 RUN apk --no-cache add git curl \
     && npm i -g --force npm yarn

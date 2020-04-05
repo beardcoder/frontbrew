@@ -63,7 +63,7 @@
         "stylelint-declaration-use-variable": "1.7.2",
         "stylelint-scss": "3.16.0",
         "stylelint-webpack-plugin": "1.2.3",
-        "ts-node": "8.8.1",
+        "ts-node": "8.8.2",
         "typescript": "3.8.3",
         "webpack": "4.42.1",
         "webpack-cli": "3.3.11",

@@ -4,7 +4,7 @@
   ],
   "packageRules": [
     {
-      "updateTypes": ["major", "lockFileMaintenance", "minor", "patch", "pin", "digest", "bump"],
+      "updateTypes": ["devDependencies", "major", "lockFileMaintenance", "minor", "patch", "pin", "digest", "bump"],
       "automerge": true
     }
   ]

@@ -27,7 +27,10 @@ const config: Configuration = {
     output: {
         path: path.join(process.env.BASE_PATH, process.env.PROJECT_PUBLIC),
         filename: path.join(process.env.SCRIPTS_PATH, "[name].js"),
-        chunkFilename: "[name].[chunkhash:4].js",
+        chunkFilename: path.join(
+            process.env.SCRIPTS_PATH,
+            "[name].[chunkhash:4].js"
+        ),
         publicPath: process.env.PUBLIC_PATH,
         pathinfo: false,
     },

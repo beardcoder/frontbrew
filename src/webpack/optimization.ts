@@ -8,6 +8,16 @@ const config: webpack.Configuration = {
     optimization: {
         moduleIds: "hashed",
         minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: "styles",
+                    test: /\.css$/,
+                    chunks: "all",
+                    enforce: true,
+                },
+            },
+        },
     },
 };
 

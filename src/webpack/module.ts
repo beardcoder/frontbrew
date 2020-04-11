@@ -15,8 +15,8 @@ let styleloaderOptions = {};
 if (!DEV_MODE) {
     styleloaderOptions = {
         options: {
-            hmr: !IS_CI_BUILD
-        }
+            hmr: !IS_CI_BUILD,
+        },
     };
 }
 
@@ -30,7 +30,7 @@ const config: webpack.Configuration = {
                         loader: DEV_MODE
                             ? "style-loader"
                             : MiniCssExtractPlugin.loader,
-                        ...styleloaderOptions
+                        ...styleloaderOptions,
                     },
                     {
                         loader: "css-loader",
@@ -38,8 +38,8 @@ const config: webpack.Configuration = {
                             url: false,
                             import: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD
-                        }
+                            sourceMap: !IS_CI_BUILD,
+                        },
                     },
                     {
                         loader: "postcss-loader",
@@ -47,18 +47,18 @@ const config: webpack.Configuration = {
                             sourceMap: !IS_CI_BUILD,
                             plugins: (): any => [
                                 cssnano({
-                                    preset: "default"
+                                    preset: "default",
                                 }),
                                 autoprefixer({
                                     cascade: !IS_CI_BUILD,
-                                    grid: "autoplace"
+                                    grid: "autoplace",
                                 }),
-                                reporter()
-                            ]
-                        }
+                                reporter(),
+                            ],
+                        },
                     },
                     {
-                        loader: "cache-loader"
+                        loader: "cache-loader",
                     },
                     {
                         loader: "sass-loader",
@@ -71,12 +71,12 @@ const config: webpack.Configuration = {
                                         process.env.BASE_PATH,
                                         process.env.PROJECT_PRIVATE,
                                         "node_modules"
-                                    )
-                                ]
-                            }
-                        }
-                    }
-                ]
+                                    ),
+                                ],
+                            },
+                        },
+                    },
+                ],
             },
             {
                 enforce: "pre",
@@ -89,8 +89,8 @@ const config: webpack.Configuration = {
                         process.env.PROJECT_PRIVATE,
                         ".eslintrc"
                     ),
-                    formatter: friendlyFormatter
-                }
+                    formatter: friendlyFormatter,
+                },
             },
             {
                 test: /\.(ts|js)x?$/,
@@ -102,9 +102,9 @@ const config: webpack.Configuration = {
                             process.env.BASE_PATH,
                             process.env.PROJECT_PRIVATE,
                             ".babelrc"
-                        )
-                    }
-                }
+                        ),
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -112,29 +112,29 @@ const config: webpack.Configuration = {
                     {
                         loader: DEV_MODE
                             ? "style-loader"
-                            : MiniCssExtractPlugin.loader
+                            : MiniCssExtractPlugin.loader,
                     },
                     {
                         loader: "css-loader",
                         options: {
                             url: false,
                             importLoaders: 1,
-                            sourceMap: !IS_CI_BUILD
-                        }
+                            sourceMap: !IS_CI_BUILD,
+                        },
                     },
                     {
                         loader: "postcss-loader",
                         options: {
                             sourceMap: !IS_CI_BUILD,
                             config: {
-                                path: __dirname
-                            }
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                                path: __dirname,
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };
 
 export default config;

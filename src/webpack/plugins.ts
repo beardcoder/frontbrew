@@ -9,13 +9,13 @@ const ENV: string = IS_CI_BUILD ? "production" : "development";
 const config: webpack.Configuration = {
     plugins: [
         new webpack.DefinePlugin({
-            "process.env": ENV
+            "process.env": ENV,
         }),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: process.env.STYLES_PATH + process.env.STYLES_FILE,
-            chunkFilename: `${process.env.STYLES_PATH}[id].css`
+            chunkFilename: `${process.env.STYLES_PATH}[name].[chunkhash:4].js`,
         }),
         new StyleLintPlugin({
             configFile: path.join(
@@ -26,9 +26,9 @@ const config: webpack.Configuration = {
             context: path.resolve(
                 process.env.BASE_PATH,
                 process.env.PROJECT_PRIVATE
-            )
-        })
-    ]
+            ),
+        }),
+    ],
 };
 
 export default config;

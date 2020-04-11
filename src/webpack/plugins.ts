@@ -15,7 +15,6 @@ const config: webpack.Configuration = {
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: process.env.STYLES_PATH + process.env.STYLES_FILE,
-            chunkFilename: `${process.env.STYLES_PATH}[name].[chunkhash:4].js`,
         }),
         new StyleLintPlugin({
             configFile: path.join(

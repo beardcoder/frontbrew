@@ -22,20 +22,21 @@ const config: Configuration = {
             process.env.BASE_PATH,
             process.env.PROJECT_PRIVATE,
             "webpack.entrypoint.js"
-        )
+        ),
     },
     output: {
         path: path.join(process.env.BASE_PATH, process.env.PROJECT_PUBLIC),
         filename: path.join(process.env.SCRIPTS_PATH, "[name].js"),
+        chunkFilename: "[name].[chunkhash:4].js",
         publicPath: process.env.PUBLIC_PATH,
-        pathinfo: false
+        pathinfo: false,
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".vue"],
         alias: {
             "@": path.join(process.env.BASE_PATH, process.env.PROJECT_PRIVATE),
-            "~": path.join(process.env.BASE_PATH, process.env.PROJECT_PRIVATE)
-        }
+            "~": path.join(process.env.BASE_PATH, process.env.PROJECT_PRIVATE),
+        },
     },
     stats: {
         modules: false,
@@ -45,7 +46,7 @@ const config: Configuration = {
         chunks: false,
         children: false,
         source: false,
-        publicPath: false
+        publicPath: false,
     },
     devServer: {
         publicPath: process.env.PUBLIC_PATH,
@@ -55,13 +56,13 @@ const config: Configuration = {
             process.env.BASE_PATH,
             process.env.PROJECT_PUBLIC
         ),
-        writeToDisk: filePath => filePath.indexOf("hot-update") === -1,
+        writeToDisk: (filePath) => filePath.indexOf("hot-update") === -1,
         port: 3000,
         proxy: [
             {
                 context: "/",
-                target: `http://${process.env.PROXY_HOST}`
-            }
+                target: `http://${process.env.PROXY_HOST}`,
+            },
         ],
         disableHostCheck: true,
         hot: true,
@@ -74,9 +75,9 @@ const config: Configuration = {
             chunks: false,
             children: false,
             source: false,
-            publicPath: false
-        }
-    }
+            publicPath: false,
+        },
+    },
 };
 
 module.exports = merge(

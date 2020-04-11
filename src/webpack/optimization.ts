@@ -6,8 +6,9 @@ const IS_CI_BUILD = !!process.env.CI;
 
 const config: webpack.Configuration = {
     optimization: {
-        minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()]
-    }
+        moduleIds: "hashed",
+        minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+    },
 };
 
 export default config;

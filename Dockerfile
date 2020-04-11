@@ -12,8 +12,7 @@ ENV PROXY_PORT='3000'
 ENV PUBLIC_PATH='/_Resources/Static/Packages/Your.Site/'
 ENV YARN_CACHE_FOLDER='/home/node/.yarn/'
 
-RUN apk --no-cache add git curl \
-    && npm i -g --force npm yarn
+RUN apk --no-cache add git curl
 
 COPY src /home/node
 RUN chown -R node /home/node

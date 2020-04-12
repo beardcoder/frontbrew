@@ -9,12 +9,7 @@ const config: webpack.Configuration = {
         minimize: IS_CI_BUILD,
         moduleIds: "hashed",
         runtimeChunk: "single",
-        minimizer: [
-            new TerserPlugin({
-                parallel: true,
-            }),
-            new OptimizeCSSAssetsPlugin(),
-        ],
+        minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
             chunks: "all",
             maxInitialRequests: Infinity,

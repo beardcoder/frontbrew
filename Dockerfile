@@ -14,7 +14,8 @@ ENV YARN_CACHE_FOLDER='/home/node/.yarn/'
 
 RUN apk --no-cache add git curl
 
-COPY src /home/node
+COPY src/package.json /home/node
+COPY src/package-lock.json /home/node
 RUN chown -R node /home/node
 
 USER node
@@ -22,6 +23,8 @@ USER node
 RUN cd /home/node \
     && yarn && yarn cache clean \
     && npx modclean -r -n default:safe
+
+COPY src /home/node
 
 WORKDIR /home/node
 CMD ["/bin/sh"]

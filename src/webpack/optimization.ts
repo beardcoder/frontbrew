@@ -1,6 +1,6 @@
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import webpack from "webpack";
-import TerserPlugin from "terser-webpack-plugin";
+import TerserJSPlugin from "terser-webpack-plugin";
 
 const IS_CI_BUILD = !!process.env.CI;
 
@@ -9,9 +9,8 @@ const config: webpack.Configuration = {
         minimize: IS_CI_BUILD,
         moduleIds: "hashed",
         runtimeChunk: "single",
-        minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+        minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
-            chunks: "all",
             maxInitialRequests: Infinity,
             minSize: 0,
             cacheGroups: {

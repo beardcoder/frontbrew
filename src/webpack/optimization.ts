@@ -6,13 +6,13 @@ const IS_CI_BUILD = !!process.env.CI;
 
 const config: webpack.Configuration = {
     optimization: {
+        minimize: IS_CI_BUILD,
         moduleIds: "hashed",
         runtimeChunk: "single",
         minimizer: [
             new TerserPlugin({
                 parallel: true,
             }),
-            ,
             new OptimizeCSSAssetsPlugin(),
         ],
         splitChunks: {

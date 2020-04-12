@@ -15,7 +15,7 @@ ENV YARN_CACHE_FOLDER='/home/node/.yarn/'
 RUN apk --no-cache add git curl
 
 COPY src/package.json /home/node
-COPY src/package-lock.json /home/node
+COPY src/yarn.lock /home/node
 RUN chown -R node /home/node
 
 USER node

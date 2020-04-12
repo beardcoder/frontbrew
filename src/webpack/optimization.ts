@@ -11,7 +11,6 @@ const config: webpack.Configuration = {
         splitChunks: {
             maxInitialRequests: Infinity,
             minSize: 0,
-            chunks: "all",
             cacheGroups: {
                 styles: {
                     name: "styles",

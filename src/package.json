@@ -59,7 +59,7 @@
         "sass-loader": "8.0.2",
         "source-map-loader": "0.2.4",
         "style-loader": "1.2.1",
-        "stylelint": "13.4.1",
+        "stylelint": "13.5.0",
         "stylelint-declaration-use-variable": "1.7.2",
         "stylelint-scss": "3.17.2",
         "stylelint-webpack-plugin": "2.0.0",

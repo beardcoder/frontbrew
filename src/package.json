@@ -25,7 +25,7 @@
         "@types/autoprefixer": "9.7.2",
         "@types/cssnano": "4.0.0",
         "@types/node": "13.13.9",
-        "@types/webpack": "4.41.16",
+        "@types/webpack": "4.41.17",
         "@types/webpack-dev-server": "3.11.0",
         "@typescript-eslint/eslint-plugin": "3.1.0",
         "autoprefixer": "9.8.0",

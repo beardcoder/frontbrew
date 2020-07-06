@@ -24,7 +24,7 @@
         "@babel/preset-typescript": "7.10.4",
         "@types/autoprefixer": "9.7.2",
         "@types/cssnano": "4.0.0",
-        "@types/node": "13.13.12",
+        "@types/node": "13.13.13",
         "@types/webpack": "4.41.19",
         "@types/webpack-dev-server": "3.11.0",
         "@typescript-eslint/eslint-plugin": "3.6.0",
